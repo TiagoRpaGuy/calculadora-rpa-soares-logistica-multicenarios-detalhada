@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/components/currencyinput.tsx","./src/components/resultstable.tsx","./src/components/scenariocard.tsx","./src/types/index.ts","./src/utils/calculations.ts"],"version":"5.6.3"}
