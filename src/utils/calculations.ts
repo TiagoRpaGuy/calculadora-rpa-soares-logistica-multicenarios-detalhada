@@ -28,9 +28,13 @@ export const calculateScenario = (scenario: ScenarioData, globalTotal?: number):
         quantidadeParcelas: 0,
         valorParcelaMensal: 0,
         valorParcelaSemanal: 0,
+        valorDiario: 0,
         totalSemanas: 0,
-        thiagoShare: 0,
-        eduardoShare: 0,
+        thiagoShareTotal: 0,
+        eduardoShareTotal: 0,
+        thiagoShareMensal: 0,
+        eduardoShareMensal: 0,
+        totalContrato: 0,
         dataPrimeiraParcela: '',
         dataUltimaParcelaMensal: '',
         datasMensais: [],
@@ -79,12 +83,27 @@ export const calculateScenario = (scenario: ScenarioData, globalTotal?: number):
         if (!isNaN(parcelas) && parcelas > 0) {
             result.quantidadeParcelas = parcelas;
             result.valorParcelaMensal = result.valorFinanciado / parcelas;
-            result.valorParcelaSemanal = result.valorParcelaMensal / 4;
-            result.totalSemanas = parcelas * 4;
 
-            // Shares
-            result.thiagoShare = result.valorParcelaMensal * 0.70;
-            result.eduardoShare = result.valorParcelaMensal * 0.30;
+            // New calculations
+            result.valorDiario = result.valorParcelaMensal / 30; // Base 30
+            result.valorParcelaSemanal = result.valorParcelaMensal / 4.345; // More precise weekly base? Or staying with simple /4 as requested? 
+            // User prompt: "Valor semanal (base 4,345 semanas / mês)"
+            result.valorParcelaSemanal = result.valorParcelaMensal / 4.345;
+
+            result.totalSemanas = Math.round(parcelas * 4.345); // Adjust total weeks estimate? Or stick to simple calc? 
+            // Legacy was parcelas * 4. User request for weekly value uses 4.345.
+            // I will update weekly value to 4.345. 
+
+            // Shares (Monthly)
+            result.thiagoShareMensal = result.valorParcelaMensal * 0.70;
+            result.eduardoShareMensal = result.valorParcelaMensal * 0.30;
+
+            // Shares (Total) - assuming total profit/financed is split
+            result.thiagoShareTotal = result.valorFinanciado * 0.70;
+            result.eduardoShareTotal = result.valorFinanciado * 0.30;
+
+            // Total Contrato
+            result.totalContrato = result.entradaReais + result.valorFinanciado;
 
             // 4. Dates
             if (scenario.dataPrimeiraParcela) {

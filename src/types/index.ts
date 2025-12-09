@@ -17,9 +17,13 @@ export interface ScenarioResult {
     quantidadeParcelas: number;
     valorParcelaMensal: number;
     valorParcelaSemanal: number;
+    valorDiario: number;
     totalSemanas: number;
-    thiagoShare: number;
-    eduardoShare: number;
+    thiagoShareTotal: number;
+    eduardoShareTotal: number;
+    thiagoShareMensal: number;
+    eduardoShareMensal: number;
+    totalContrato: number;
     dataPrimeiraParcela: string;
     dataUltimaParcelaMensal: string;
     datasMensais: string[];
