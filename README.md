@@ -1,15 +1,19 @@
-# Calculadora RPA Soares Logística (v2.1) - Edição Detalhada
+# Calculadora RPA Soares Logística (v2.2) - Edição Detalhada e Dinâmica
 
-Ferramenta avançada para precificação de projetos RPA, suportando múltiplos cenários, detalhamento financeiro profundo e exportação de relatórios.
+Ferramenta avançada para precificação de projetos RPA, suportando múltiplos cenários, gestão dinâmica de participantes, detalhamento financeiro profundo e exportação de relatórios.
 
 ## Funcionalidades Principais
 
 - **Múltiplos Cenários**: Simule até 10 cenários diferentes simultaneamente.
+- **Gestão de Participantes**:
+  - **Adicione/Remova Participantes**: Configure quem fará parte do projeto. 
+  - **Porcentagens Personalizáveis**: Defina a porcentagem de lucro de cada participante.
+  - **Validação**: O sistema alerta caso a soma das porcentagens não seja 100%.
 - **Detalhamento Financeiro**:
-  - Divisão de lucros (Thiago/Eduardo).
+  - Cálculo automático da divisão de lucros (Mensal e Total) por participante.
   - Estimativas de ganho diário e semanal.
-  - Valor total do contrato.
-- **Exportação**: Gere relatórios completos em formato `.txt` para cada cenário.
+  - Valor total do contrato e financiamento.
+- **Exportação**: Gere relatórios completos em formato `.txt` contendo os dados do cenário e a divisão detalhada entre os participantes.
 - **Interface Moderna**: Construída com React, TypeScript e Tailwind CSS.
 
 ## Tecnologias
@@ -55,4 +59,4 @@ Ferramenta avançada para precificação de projetos RPA, suportando múltiplos 
 
 ## Propósito
 
-Esta ferramenta visa facilitar a negociação e planejamento financeiro de projetos RPA, oferecendo clareza sobre o fluxo de caixa, parcelamento e divisão de resultados entre os sócios.
+Esta ferramenta visa facilitar a negociação e planejamento financeiro de projetos RPA, oferecendo clareza sobre o fluxo de caixa, parcelamento e uma divisão de resultados justa e transparente entre todos os envolvidos no projeto.
