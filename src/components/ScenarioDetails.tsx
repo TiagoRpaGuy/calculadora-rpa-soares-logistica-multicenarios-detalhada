@@ -68,23 +68,20 @@ export const ScenarioDetails: React.FC<ScenarioDetailsProps> = ({ scenario }) =>
                 <div className="bg-white p-4 rounded-md shadow-sm border border-gray-100">
                     <h5 className="font-semibold text-gray-600 mb-3 border-b pb-1">Divisão de Lucros</h5>
                     <div className="space-y-2 text-sm">
-                        <div className="flex justify-between">
-                            <span className="text-gray-500">Thiago (Mensal):</span>
-                            <span className="font-medium text-indigo-600">{formatCurrency(scenario.thiagoShareMensal)}</span>
-                        </div>
-                        <div className="flex justify-between">
-                            <span className="text-gray-500">Eduardo (Mensal):</span>
-                            <span className="font-medium text-indigo-600">{formatCurrency(scenario.eduardoShareMensal)}</span>
-                        </div>
+                        {scenario.participantsShares.map((share, idx) => (
+                            <div key={`mensal-${idx}`} className="flex justify-between">
+                                <span className="text-gray-500">{share.name} (Mensal):</span>
+                                <span className="font-medium text-indigo-600">{formatCurrency(share.shareMensal)}</span>
+                            </div>
+                        ))}
+
                         <div className="border-t pt-2 mt-2">
-                            <div className="flex justify-between text-xs">
-                                <span className="text-gray-500">Thiago (Total):</span>
-                                <span className="font-bold text-gray-800">{formatCurrency(scenario.thiagoShareTotal)}</span>
-                            </div>
-                            <div className="flex justify-between text-xs">
-                                <span className="text-gray-500">Eduardo (Total):</span>
-                                <span className="font-bold text-gray-800">{formatCurrency(scenario.eduardoShareTotal)}</span>
-                            </div>
+                            {scenario.participantsShares.map((share, idx) => (
+                                <div key={`total-${idx}`} className="flex justify-between text-xs">
+                                    <span className="text-gray-500">{share.name} (Total):</span>
+                                    <span className="font-bold text-gray-800">{formatCurrency(share.shareTotal)}</span>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>

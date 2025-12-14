@@ -7,6 +7,19 @@ export interface ScenarioData {
     dataPrimeiraParcela: string;
 }
 
+export interface Participant {
+    id: number;
+    name: string;
+    percentage: number;
+}
+
+export interface ParticipantShare {
+    name: string;
+    percentage: number;
+    shareTotal: number;
+    shareMensal: number;
+}
+
 export interface ScenarioResult {
     id: number;
     nome: string;
@@ -19,10 +32,7 @@ export interface ScenarioResult {
     valorParcelaSemanal: number;
     valorDiario: number;
     totalSemanas: number;
-    thiagoShareTotal: number;
-    eduardoShareTotal: number;
-    thiagoShareMensal: number;
-    eduardoShareMensal: number;
+    participantsShares: ParticipantShare[];
     totalContrato: number;
     dataPrimeiraParcela: string;
     dataUltimaParcelaMensal: string;

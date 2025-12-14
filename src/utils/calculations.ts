@@ -1,5 +1,5 @@
 import { addDays, format } from 'date-fns';
-import { ScenarioData, ScenarioResult } from '../types';
+import { ScenarioData, ScenarioResult, Participant } from '../types';
 
 export const parseCurrency = (value: string): number => {
     if (!value) return 0;
@@ -17,7 +17,7 @@ export const formatCurrency = (value: number): string => {
     }).format(value);
 };
 
-export const calculateScenario = (scenario: ScenarioData, globalTotal?: number): ScenarioResult => {
+export const calculateScenario = (scenario: ScenarioData, participants: Participant[], globalTotal?: number): ScenarioResult => {
     const result: ScenarioResult = {
         id: scenario.id,
         nome: `Cenário ${scenario.id}`,
@@ -30,10 +30,7 @@ export const calculateScenario = (scenario: ScenarioData, globalTotal?: number):
         valorParcelaSemanal: 0,
         valorDiario: 0,
         totalSemanas: 0,
-        thiagoShareTotal: 0,
-        eduardoShareTotal: 0,
-        thiagoShareMensal: 0,
-        eduardoShareMensal: 0,
+        participantsShares: [],
         totalContrato: 0,
         dataPrimeiraParcela: '',
         dataUltimaParcelaMensal: '',
@@ -94,13 +91,14 @@ export const calculateScenario = (scenario: ScenarioData, globalTotal?: number):
             // Legacy was parcelas * 4. User request for weekly value uses 4.345.
             // I will update weekly value to 4.345. 
 
-            // Shares (Monthly)
-            result.thiagoShareMensal = result.valorParcelaMensal * 0.70;
-            result.eduardoShareMensal = result.valorParcelaMensal * 0.30;
+            // Shares Calculation
+            result.participantsShares = participants.map(p => ({
+                name: p.name,
+                percentage: p.percentage,
+                shareTotal: result.valorFinanciado * (p.percentage / 100),
+                shareMensal: result.valorParcelaMensal * (p.percentage / 100)
+            }));
 
-            // Shares (Total) - assuming total profit/financed is split
-            result.thiagoShareTotal = result.valorFinanciado * 0.70;
-            result.eduardoShareTotal = result.valorFinanciado * 0.30;
 
             // Total Contrato
             result.totalContrato = result.entradaReais + result.valorFinanciado;

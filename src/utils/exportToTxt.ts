@@ -12,10 +12,10 @@ export const generateScenarioReport = (scenario: ScenarioResult) => {
     lines.push(`Quantidade de parcelas: ${scenario.quantidadeParcelas}`);
     lines.push(`Valor da parcela: ${formatCurrency(scenario.valorParcelaMensal)}`);
     lines.push(`Total do contrato: ${formatCurrency(scenario.totalContrato)}`);
-    lines.push(`Ganho Thiago (70%): ${formatCurrency(scenario.thiagoShareTotal)}`);
-    lines.push(`Ganho Eduardo (30%): ${formatCurrency(scenario.eduardoShareTotal)}`);
-    lines.push(`Valor mensal Thiago: ${formatCurrency(scenario.thiagoShareMensal)}`);
-    lines.push(`Valor mensal Eduardo: ${formatCurrency(scenario.eduardoShareMensal)}`);
+    scenario.participantsShares.forEach((share) => {
+        lines.push(`Ganho ${share.name} (${share.percentage}%): ${formatCurrency(share.shareTotal)}`);
+        lines.push(`Valor mensal ${share.name}: ${formatCurrency(share.shareMensal)}`);
+    });
     lines.push(`Valor semanal estimado: ${formatCurrency(scenario.valorParcelaSemanal)}`);
     lines.push(`Valor diário estimado: ${formatCurrency(scenario.valorDiario)}`);
     lines.push(`Data primeira parcela: ${scenario.dataPrimeiraParcela}`);
